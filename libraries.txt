@@ -1,0 +1,14 @@
+-------------- NAVIGATION -------------------
+npm i --save @react-navigation/native react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view 
+&& npm i --save @react-navigation/stack @react-navigation/drawer @react-navigation/bottom-tabs 
+
+-------------- UI -------------------
+npm i --save native-base react-native-vector-icons react-native-elements react-native-svg react-native-svg-transformer 
+
+https://github.com/kristerkari/react-native-svg-transformer
+
+-------------- STORAGE -------------------
+npm i --save @reduxjs/toolkit react-redux redux redux-persist @react-native-async-storage/async-storage 
+
+-------------- OTHERS -------------------
+npm i --save react-native-swift @react-native-community/masked-view react-native-safe-area-context
