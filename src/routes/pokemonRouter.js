@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 const PokemonRouter = () => {
   return (
-    <Stack.Navigator >
+    <Stack.Navigator initialRouteName="Regions">
       <Stack.Screen
         name="Regions"
         component={Regions}

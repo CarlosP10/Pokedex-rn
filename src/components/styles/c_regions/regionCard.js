@@ -7,19 +7,27 @@ export default StyleSheet.create({
   mainView: {
     alignItems: 'center',
     marginHorizontal: resize(10),
+    marginVertical: resize(10),
     width: resize(175),
-    height: resize(205),
+  },
+  gradient: {
+    // flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
   },
 
   mainContainer: {
     width: resize(165),
-    height: resize(195),
-    borderWidth: resize(0.5),
+    height: resize(130),
+    // borderWidth: resize(0.5),
     borderRadius: resize(20),
-    // alignItems:'center',
+    justifyContent: 'center',
   },
   textStyle: {
-    marginTop: resize(9),
     textAlign: 'center',
+    fontSize: resize(22),
+    textTransform: 'capitalize',
+    fontFamily: 'ComicNeue-Bold',
   },
 });

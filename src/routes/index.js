@@ -12,7 +12,12 @@ const Stack = createStackNavigator();
 const MainStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="AuthRouter">
+      <Stack.Navigator initialRouteName="PokemonRouter">
+        <Stack.Screen
+          name="PokemonRouter"
+          component={PokemonRouter}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Home"
           component={Home}
@@ -21,11 +26,6 @@ const MainStack = () => {
         <Stack.Screen
           name="AuthRouter"
           component={AuthRouter}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="PokemonRouter"
-          component={PokemonRouter}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

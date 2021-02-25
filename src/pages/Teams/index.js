@@ -1,13 +1,14 @@
-import { Text, View } from 'react-native'
+import {Text, View} from 'react-native';
 
-import React from 'react'
+import React from 'react';
+import Teams from './components/Teams';
 
 const index = () => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
+  return (
+    <View>
+      <Teams />
+    </View>
+  );
+};
 
-export default index
+export default index;

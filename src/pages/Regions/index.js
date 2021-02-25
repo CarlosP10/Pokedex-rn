@@ -1,11 +1,12 @@
 import { Text, View } from 'react-native'
 
 import React from 'react'
+import Regions from './components/Regions'
 
 const index = () => {
     return (
-        <View>
-            <Text></Text>
+        <View style={{flex:1}}>
+            <Regions/>
         </View>
     )
 }

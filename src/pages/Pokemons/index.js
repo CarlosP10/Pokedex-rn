@@ -1,11 +1,12 @@
 import { Text, View } from 'react-native'
 
+import Pokemons from './components/Pokemons'
 import React from 'react'
 
 const index = () => {
     return (
         <View>
-            <Text></Text>
+            <Pokemons />
         </View>
     )
 }

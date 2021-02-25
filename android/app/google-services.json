@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "990083102523",
+    "project_id": "pokelanin",
+    "storage_bucket": "pokelanin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990083102523:android:7aa5d8d50d5cacf243a91e",
+        "android_client_info": {
+          "package_name": "com.pokelanin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990083102523-5h615k782acld80s1uldkk186nhmg9c3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pokelanin",
+            "certificate_hash": "ebf759336d2cf9f8aa96b49066e86ddf190827aa"
+          }
+        },
+        {
+          "client_id": "990083102523-5vuto1ue1budemq5lq702cjgm8si1p3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo2rVW4wbB3peOZFtIohgW8YTMg_0ViwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990083102523-5vuto1ue1budemq5lq702cjgm8si1p3o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
