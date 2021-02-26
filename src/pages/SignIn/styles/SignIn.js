@@ -34,4 +34,24 @@ export default StyleSheet.create({
     fontSize: 18,
     color: Colors.POKEMONDARKBLUE,
   },
+  screen: {
+    flex: 1,
+  },
+  gradient: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  authContainer: {
+    width: '83%',
+    height:'90%',
+    maxWidth: 400,
+    padding: 20,
+    maxHeight: 500,
+    justifyContent:'space-between',
+  },
+  buttonContainer: {
+    marginTop: resize(30),
+    marginBottom:0,
+  },
 });

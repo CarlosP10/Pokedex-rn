@@ -4,16 +4,14 @@ import React, {useState} from 'react';
 import {ScrollView, Text, TextInput, View} from 'react-native';
 
 import AddPokemon from './components/AddPokemon';
-import NewPokemon from '@components/c_pokemons/pokemonCard';
 import styles from './styles/NewTeam';
-
-// import {useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const index = (props) => {
   const {params} = props.route;
   const [value, onChangeValue] = useState(params.team);
-  // const isAuth = useSelector(state => state.auth.token);
-  // const user = useSelector(state=>state.auth.userId)
+  const isAuth = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.userId);
   let pokemon1 = undefined;
   let pokemon2 = undefined;
   let pokemon3 = undefined;
@@ -23,10 +21,7 @@ const index = (props) => {
   let regions = params.url;
   if (params.flag === true) {
   }
-  if (
-    params.flag === false ||
-    params.flag === undefined
-  ) {
+  if (params.flag === false || params.flag === undefined) {
     pokemon1 = params.pokemon1;
     pokemon2 = params.pokemon2;
     pokemon3 = params.pokemon3;
@@ -37,7 +32,7 @@ const index = (props) => {
   const updateTeam = async (id) => {
     try {
       const pokemons = await fetch(
-        `https://pokelanin-default-rtdb.firebaseio.com/teams/${id}.json`,
+        `https://pokelanin-default-rtdb.firebaseio.com/${user}/teams/${id}.json?auth=${isAuth}`,
         {
           method: 'PATCH',
           headers: {
@@ -65,7 +60,7 @@ const index = (props) => {
   const sendData = async () => {
     try {
       const pokemons = await fetch(
-        `https://pokelanin-default-rtdb.firebaseio.com/teams.json`,
+        `https://pokelanin-default-rtdb.firebaseio.com/${user}/teams.json?auth=${isAuth}`,
         {
           method: 'POST',
           headers: {

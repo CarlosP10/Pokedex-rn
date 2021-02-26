@@ -1,12 +1,12 @@
 import {Text, View} from 'react-native';
 
+import Login from './components/Login';
 import React from 'react';
-import SignIn from './components/SignIn';
 
 const index = () => {
   return (
-    <View>
-      <SignIn />
+    <View style={{flex: 1}}>
+      <Login />
     </View>
   );
 };

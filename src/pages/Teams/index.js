@@ -11,8 +11,8 @@ import {useSelector} from 'react-redux';
 
 const index = (props) => {
   const [lista, setlista] = useState();
-  // const isAuth = useSelector((state) => state.auth.token);
-  // const user = useSelector((state) => state.auth.userId);
+  const isAuth = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.userId);
   useEffect(() => {
     getTeams();
   }, []);
@@ -42,7 +42,7 @@ const index = (props) => {
   const deleteTeam = async (key) => {
     try {
       const regions = await fetch(
-        `https://pokelanin-default-rtdb.firebaseio.com/teams/${key}.json`,
+        `https://pokelanin-default-rtdb.firebaseio.com/${user}/teams/${key}.json?auth=${isAuth}`,
         {
           method: 'DELETE',
         },
@@ -55,7 +55,7 @@ const index = (props) => {
   const getTeams = async () => {
     try {
       const teams = await fetch(
-        `https://pokelanin-default-rtdb.firebaseio.com/teams.json`,
+        `https://pokelanin-default-rtdb.firebaseio.com/${user}/teams.json?auth=${isAuth}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const index = (props) => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <Text style={styles.mainTitle}>MY TEAMS</Text>
+      <Text style={styles.mainTitle}>MIS EQUIPOS</Text>
       <FlatList
         style={styles.flatListStyle}
         data={lista}
@@ -130,7 +130,7 @@ const index = (props) => {
             />
             <ButtonLarge
               iconName="delete"
-              title="  Delete Team"
+              title="  Borrar Equipo"
               onPress={() => {
                 console.log(item.item.id);
                 deleteTeam(item.item.id);

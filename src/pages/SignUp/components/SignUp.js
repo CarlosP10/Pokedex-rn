@@ -8,7 +8,7 @@ import React from 'react';
 import styles from '../styles/SignUp';
 import {useNavigation} from '@react-navigation/native';
 
-const SignUp = () => {
+const SignUp = (props) => {
   const navigation = useNavigation();
   const imageNew = '@assets/images/choose1.png';
   return (
@@ -26,7 +26,7 @@ const SignUp = () => {
         <View style={styles.mainContainer}>
           <Button
             text={Constants.AUTH.SIGNUP}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => props.navigation.navigate('Home')}
             style={styles.buttonStyle}
             textStyle={styles.textButtonStyle}
           />
@@ -36,7 +36,7 @@ const SignUp = () => {
             <AuthText
               text1="Ya tienes una cuenta?"
               text2={Constants.AUTH.SIGNIN}
-              onPress={() => navigation.navigate('SignIn')}
+              onPress={() => props.navigation.navigate('SignIn')}
             />
           </Text>
         </View>

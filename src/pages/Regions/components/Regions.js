@@ -1,20 +1,20 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, Image, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import {Constants} from '@common';
 import RegionCard from '@components/c_regions/regionCard';
 import styles from '../styles/Regions';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
-const Regions = () => {
-  const navigation = useNavigation();
+const Regions = props => {
+  const isAuth = useSelector((state) => !!state.auth.token);
+  const navigation = useNavigation()
+  useEffect(() => {
+    if (!isAuth) {
+      navigation.replace('SignIn');
+    }
+  }, [isAuth]);
   const [regiones, setRegiones] = useState();
   useEffect(() => {
     getRegions();

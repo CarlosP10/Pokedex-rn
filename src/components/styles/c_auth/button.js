@@ -19,6 +19,6 @@ export default StyleSheet.create({
   textStyle: {
     paddingVertical: resize(20),
     textAlign: 'center',
-    
+    // color:'black'
   },
 });

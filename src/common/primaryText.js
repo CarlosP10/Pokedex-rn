@@ -6,6 +6,7 @@ const PrimaryText = (props) => {
   const styles = StyleSheet.create({
     text: {
       // fontFamily: `Poppins-${props.type ? props.type : 'Regular'}`,
+      fontFamily: 'ComicNeue-Bold',
     },
   });
   return (
