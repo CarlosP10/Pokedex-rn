@@ -23,7 +23,7 @@ const SignUp = () => {
       </View>
       <View style={styles.mainContainer}>
         <Button text={Constants.AUTH.SIGNUP} 
-        onPress={() => navigation.navigate('PokemonRouter')}/>
+        onPress={() => navigation.navigate('Home')}/>
       </View>
       <View style={[styles.mainContainer, {alignItems:'center'}]}>
         <Text >

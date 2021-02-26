@@ -1,10 +1,9 @@
 import {Colors, PrimaryText} from '@common';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 import {Input} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient'
 import React from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import styles from '../styles/c_regions/regionCard';
 
 const regionCard = ({text, onPress}) => {

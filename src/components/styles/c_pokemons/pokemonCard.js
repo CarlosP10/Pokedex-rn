@@ -8,7 +8,7 @@ var {width} = Dimensions.get('window');
 export default StyleSheet.create({
   mainView: {
     // alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     marginHorizontal: resize(10),
     // marginHorizontal: resize(15),
     flexDirection: 'row',
@@ -41,12 +41,17 @@ export default StyleSheet.create({
     // flex: 1,
     alignSelf: 'flex-start',
   },
-  pokemonNameStyle: {    
-    marginTop:resize(10),
+  pokemonNameStyle: {
+    marginTop: resize(10),
     textAlign: 'center',
   },
-  textStyle:{
-      marginVertical:resize(4),
-      textAlign:'left',
+  textStyle: {
+    marginVertical: resize(4),
+    textAlign: 'left',
+  },
+  pokemon_images: {
+    width: resize(150),
+    height: resize(200),
+    resizeMode: 'cover',
   },
 });

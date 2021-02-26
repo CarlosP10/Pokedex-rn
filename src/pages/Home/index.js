@@ -1,15 +1,57 @@
-import { Text, View } from 'react-native'
+import {Colors} from '@common';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import React from 'react';
+import Regions from '@pages/Regions';
+import Teams from '@pages/Teams';
+// import Logout from '@pages/Logout';
+import {View} from 'react-native';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import PokemonCard from '@components/c_auth/button'
-import React from 'react'
+const Home = () => {
+  const Tab = createMaterialBottomTabNavigator();
 
-const index = () => {
-    return (
-        <View>
-            <Text>Home</Text>
-            <PokemonCard />
-        </View>
-    )
-}
+  return (
+    <View flex={1}>
+      <View flex={1}>
+        <Tab.Navigator
+          activeColor={Colors.accentColor}
+          inactiveColor={Colors.accentColor}
+          labeled={false}
+          barStyle={{backgroundColor: Colors.primaryColor}}>
+          <Tab.Screen
+            lazy={true}
+            name="Regions"
+            component={Regions}
+            options={{
+              tabBarIcon: ({focused, color}) =>
+                focused ? (
+                  <Icon name={'plus-circle'} color={color} size={25} />
+                ) : (
+                  <Icon name={'plus-circle-outline'} color={color} size={25} />
+                ),
+            }}
+          />
+          <Tab.Screen
+            lazy={true}
+            name="Teams"
+            component={Teams}
+            options={{
+              tabBarIcon: ({focused, color}) =>
+                focused ? (
+                  <Icon name={'account-group'} color={color} size={25} />
+                ) : (
+                  <Icon
+                    name={'account-group-outline'}
+                    color={color}
+                    size={25}
+                  />
+                ),
+            }}
+          />
+        </Tab.Navigator>
+      </View>
+    </View>
+  );
+};
 
-export default index
+export default Home;

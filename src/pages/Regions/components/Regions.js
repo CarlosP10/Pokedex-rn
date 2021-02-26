@@ -1,18 +1,27 @@
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-import {Constants} from '@common'
+import {Constants} from '@common';
 import RegionCard from '@components/c_regions/regionCard';
-import styles from '../styles/Regions'
+import styles from '../styles/Regions';
+import {useNavigation} from '@react-navigation/native';
 
-const Regions = (props) => {
+const Regions = () => {
+  const navigation = useNavigation();
   const [regiones, setRegiones] = useState();
   useEffect(() => {
     getRegions();
   }, []);
   const getRegions = async () => {
     try {
-      const regions = await fetch('https://pokeapi.co/api/v2/region', {
+      const regions = await fetch('https://pokeapi.co/api/v2/pokedex', {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -36,12 +45,15 @@ const Regions = (props) => {
           columnWrapperStyle={styles.column}
           data={regiones}
           keyExtractor={(item) => item.name}
+          initialNumToRender={10}
+          maxToRenderPerBatch={5}
+          windowSize={5}
           renderItem={(item, i) => (
             <View style={styles.container}>
               <RegionCard
                 text={item.item.name}
                 onPress={() => {
-                  props.navigation.navigate('NewTeam', {
+                  navigation.navigate('NewTeam', {
                     flag: true,
                     url: item.item.url,
                     update: false,
@@ -57,7 +69,5 @@ const Regions = (props) => {
     </View>
   );
 };
-
-
 
 export default Regions;
