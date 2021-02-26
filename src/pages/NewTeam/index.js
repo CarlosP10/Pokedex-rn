@@ -1,22 +1,17 @@
 import {Button, Icon} from 'react-native-elements';
-import {Colors, Constants} from '@common'
-import {
-  Dimensions,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {Colors, Constants} from '@common';
 import React, {useState} from 'react';
+import {ScrollView, Text, TextInput, View} from 'react-native';
 
+import AddPokemon from './components/AddPokemon';
 import NewPokemon from '@components/c_pokemons/pokemonCard';
+import styles from './styles/NewTeam';
 
 // import {useSelector} from 'react-redux';
 
-const index = props => {
-  const [value, onChangeValue] = useState(props.route.params.team);
+const index = (props) => {
+  const {params} = props.route;
+  const [value, onChangeValue] = useState(params.team);
   // const isAuth = useSelector(state => state.auth.token);
   // const user = useSelector(state=>state.auth.userId)
   let pokemon1 = undefined;
@@ -25,19 +20,19 @@ const index = props => {
   let pokemon4 = undefined;
   let pokemon5 = undefined;
   let pokemon6 = undefined;
-  let regions = props.route.params.url;
-  if (props.route.params.flag === true) {
+  let regions = params.url;
+  if (params.flag === true) {
   }
   if (
-    props.route.params.flag === false ||
-    props.route.params.flag === undefined
+    params.flag === false ||
+    params.flag === undefined
   ) {
-    pokemon1 = props.route.params.pokemon1;
-    pokemon2 = props.route.params.pokemon2;
-    pokemon3 = props.route.params.pokemon3;
-    pokemon4 = props.route.params.pokemon4;
-    pokemon5 = props.route.params.pokemon5;
-    pokemon6 = props.route.params.pokemon6;
+    pokemon1 = params.pokemon1;
+    pokemon2 = params.pokemon2;
+    pokemon3 = params.pokemon3;
+    pokemon4 = params.pokemon4;
+    pokemon5 = params.pokemon5;
+    pokemon6 = params.pokemon6;
   }
   const updateTeam = async (id) => {
     try {
@@ -95,6 +90,22 @@ const index = props => {
     }
   };
 
+  const propsNavigate = (props, valor, a) => {
+    props.navigation.navigate('Pokemons', {
+      key: params.key,
+      update: params.update,
+      team: valor,
+      url: params.url,
+      contador: a,
+      pokemon1: pokemon1,
+      pokemon2: pokemon2,
+      pokemon3: pokemon3,
+      pokemon4: pokemon4,
+      pokemon5: pokemon5,
+      pokemon6: pokemon6,
+    });
+  };
+
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
       <ScrollView>
@@ -106,278 +117,102 @@ const index = props => {
             placeholder={Constants.TEAM.NAMETEAM}
             placeholderTextColor="#8a9599"
           />
-          <Text
-            style={{
-              textTransform: 'uppercase',
-              alignSelf: 'center',
-              fontSize: 25,
-              fontWeight: 'bold',
-              marginBottom: 20,
-            }}>
-            {value}
-          </Text>
+          <Text style={styles.valueStyle}>{value}</Text>
           <View>
             {pokemon1 && (
-              <View
-                style={{
-                  flex: 1,
-                  borderRadius: 10,
-                  backgroundColor: '#F58712',
-                  marginBottom: 10,
-                }}>
-                <NewPokemon
-                  imagen={pokemon1.image}
-                  name={pokemon1.name}
-                  id={pokemon1.id}
-                  type={pokemon1.type}
-                  height={pokemon1.height}
-                  weight={pokemon1.weight}
-                />
-                <Button
-                  icon={<Icon name="edit" color="#ffffff" />}
-                  buttonStyle={styles.buttons_edit}
-                  title="  Edit"
-                  onPress={() => {
-                    props.navigation.navigate('Pokemons', {
-                      key: props.route.params.key,
-                      update: props.route.params.update,
-                      team: value,
-                      url: props.route.params.url,
-                      contador: 1,
-                      pokemon1: pokemon1,
-                      pokemon2: pokemon2,
-                      pokemon3: pokemon3,
-                      pokemon4: pokemon4,
-                      pokemon5: pokemon5,
-                      pokemon6: pokemon6,
-                    });
-                  }}
-                />
-              </View>
+              <AddPokemon
+                pokeName={pokemon1}
+                title="Editar"
+                iconName="edit"
+                onPress={() => {
+                  propsNavigate(props, value, 1);
+                }}
+              />
             )}
             {pokemon2 && (
-              <View
-                style={{
-                  flex: 1,
-                  borderRadius: 10,
-                  backgroundColor: '#F58712',
-                  marginBottom: 10,
-                }}>
-                <NewPokemon
-                  imagen={pokemon2.image}
-                  name={pokemon2.name}
-                  id={pokemon2.id}
-                  type={pokemon2.type}
-                  height={pokemon2.height}
-                  weight={pokemon2.weight}
-                />
-                <Button
-                  icon={<Icon name="edit" color="#ffffff" />}
-                  buttonStyle={styles.buttons_edit}
-                  title="  Edit"
-                  onPress={() => {
-                    props.navigation.navigate('Pokemons', {
-                      key: props.route.params.key,
-                      update: props.route.params.update,
-                      team: value,
-                      url: props.route.params.url,
-                      contador: 2,
-                      pokemon1: pokemon1,
-                      pokemon2: pokemon2,
-                      pokemon3: pokemon3,
-                      pokemon4: pokemon4,
-                      pokemon5: pokemon5,
-                      pokemon6: pokemon6,
-                    });
-                  }}
-                />
-              </View>
+              <AddPokemon
+                pokeName={pokemon2}
+                title="Editar"
+                iconName="edit"
+                onPress={() => {
+                  propsNavigate(props, value, 2);
+                }}
+              />
             )}
             {pokemon3 && (
-              <View
-                style={{
-                  flex: 1,
-                  borderRadius: 10,
-                  backgroundColor: '#F58712',
-                  marginBottom: 10,
-                }}>
-                <NewPokemon
-                  imagen={pokemon3.image}
-                  name={pokemon3.name}
-                  id={pokemon3.id}
-                  type={pokemon3.type}
-                  height={pokemon3.height}
-                  weight={pokemon3.weight}
-                />
-                <Button
-                  icon={<Icon name="edit" color="#ffffff" />}
-                  buttonStyle={styles.buttons_edit}
-                  title="  Edit"
-                  onPress={() => {
-                    props.navigation.navigate('Pokemons', {
-                      key: props.route.params.key,
-                      update: props.route.params.update,
-                      team: value,
-                      url: props.route.params.url,
-                      contador: 3,
-                      pokemon1: pokemon1,
-                      pokemon2: pokemon2,
-                      pokemon3: pokemon3,
-                      pokemon4: pokemon4,
-                      pokemon5: pokemon5,
-                      pokemon6: pokemon6,
-                    });
-                  }}
-                />
-              </View>
+              <AddPokemon
+                pokeName={pokemon3}
+                title="Editar"
+                iconName="edit"
+                onPress={() => {
+                  propsNavigate(props, value, 3);
+                }}
+              />
             )}
             {pokemon4 && (
-              <View
-                style={{
-                  flex: 1,
-                  borderRadius: 10,
-                  backgroundColor: '#F58712',
-                  marginBottom: 10,
-                }}>
-                <NewPokemon
-                  imagen={pokemon4.image}
-                  name={pokemon4.name}
-                  id={pokemon4.id}
-                  type={pokemon4.type}
-                  height={pokemon4.height}
-                  weight={pokemon4.weight}
-                />
-                <Button
-                  icon={<Icon name="edit" color="#ffffff" />}
-                  buttonStyle={styles.buttons_edit}
-                  title="  Edit"
-                  onPress={() => {
-                    props.navigation.navigate('Pokemons', {
-                      key: props.route.params.key,
-                      update: props.route.params.update,
-                      team: value,
-                      url: props.route.params.url,
-                      contador: 4,
-                      pokemon1: pokemon1,
-                      pokemon2: pokemon2,
-                      pokemon3: pokemon3,
-                      pokemon4: pokemon4,
-                      pokemon5: pokemon5,
-                      pokemon6: pokemon6,
-                    });
-                  }}
-                />
-              </View>
+              <AddPokemon
+                pokeName={pokemon4}
+                title="Editar"
+                iconName="edit"
+                onPress={() => {
+                  propsNavigate(props, value, 4);
+                }}
+              />
             )}
             {pokemon5 && (
-              <View
-                style={{
-                  flex: 1,
-                  borderRadius: 10,
-                  backgroundColor: '#F58712',
-                  marginBottom: 10,
-                }}>
-                <NewPokemon
-                  imagen={pokemon5.image}
-                  name={pokemon5.name}
-                  id={pokemon5.id}
-                  type={pokemon5.type}
-                  height={pokemon5.height}
-                  weight={pokemon5.weight}
-                />
-                <Button
-                  icon={<Icon name="edit" color="#ffffff" />}
-                  buttonStyle={styles.buttons_edit}
-                  title="  Edit"
-                  onPress={() => {
-                    props.navigation.navigate('Pokemons', {
-                      key: props.route.params.key,
-                      update: props.route.params.update,
-                      team: value,
-                      url: props.route.params.url,
-                      contador: 5,
-                      pokemon1: pokemon1,
-                      pokemon2: pokemon2,
-                      pokemon3: pokemon3,
-                      pokemon4: pokemon4,
-                      pokemon5: pokemon5,
-                      pokemon6: pokemon6,
-                    });
-                  }}
-                />
-              </View>
+              <AddPokemon
+                pokeName={pokemon5}
+                iconName="edit"
+                title="Editar"
+                onPress={() => {
+                  propsNavigate(props, value, 5);
+                }}
+              />
             )}
             {pokemon6 && (
-              <View
-                style={{
-                  flex: 1,
-                  borderRadius: 10,
-                  backgroundColor: '#F58712',
-                  marginBottom: 10,
-                }}>
-                <NewPokemon
-                  imagen={pokemon6.image}
-                  name={pokemon6.name}
-                  id={pokemon6.id}
-                  type={pokemon6.type}
-                  height={pokemon6.height}
-                  weight={pokemon6.weight}
-                />
-                <Button
-                  icon={<Icon name="edit" color="#ffffff" />}
-                  buttonStyle={styles.buttons_edit}
-                  title="  Edit"
-                  onPress={() => {
-                    props.navigation.navigate('Pokemons', {
-                      key: props.route.params.key,
-                      update: props.route.params.update,
-                      team: value,
-                      url: props.route.params.url,
-                      contador: 6,
-                      pokemon1: pokemon1,
-                      pokemon2: pokemon2,
-                      pokemon3: pokemon3,
-                      pokemon4: pokemon4,
-                      pokemon5: pokemon5,
-                      pokemon6: pokemon6,
-                    });
-                  }}
-                />
-              </View>
+              <AddPokemon
+                pokeName={pokemon6}
+                iconName="edit"
+                title=" Edit"
+                onPress={() => {
+                  propsNavigate(props, value, 6);
+                }}
+              />
             )}
 
-            {props.route.params.pokemon6 === undefined && (
+            {params.pokemon6 === undefined && (
               <View>
                 <Button
-                  icon={<Icon name="add" color="#ffffff" />}
+                  icon={<Icon name="add" color={Colors.POKEMONDARKBLUE} />}
+                  titleStyle={styles.buttonsTitle}
                   buttonStyle={styles.buttons}
                   title="Agregar pokemon"
                   onPress={() => {
                     if (pokemon1 === undefined) {
                       props.navigation.navigate('Pokemons', {
-                        key: props.route.params.key,
-                        update: props.route.params.update,
+                        key: params.key,
+                        update: params.update,
                         team: value,
-                        url: props.route.params.url,
+                        url: params.url,
                         contador: 1,
                         pokemon1: pokemon1,
                       });
                     } else if (pokemon2 === undefined) {
                       props.navigation.navigate('Pokemons', {
-                        key: props.route.params.key,
-                        update: props.route.params.update,
+                        key: params.key,
+                        update: params.update,
                         team: value,
-                        url: props.route.params.url,
+                        url: params.url,
                         contador: 2,
                         pokemon1: pokemon1,
                         pokemon2: pokemon2,
                       });
                     } else if (pokemon3 === undefined) {
                       props.navigation.navigate('Pokemons', {
-                        key: props.route.params.key,
-                        update: props.route.params.update,
+                        key: params.key,
+                        update: params.update,
                         team: value,
-                        url: props.route.params.url,
+                        url: params.url,
                         contador: 3,
                         pokemon1: pokemon1,
                         pokemon2: pokemon2,
@@ -385,10 +220,10 @@ const index = props => {
                       });
                     } else if (pokemon4 === undefined) {
                       props.navigation.navigate('Pokemons', {
-                        key: props.route.params.key,
-                        update: props.route.params.update,
+                        key: params.key,
+                        update: params.update,
                         team: value,
-                        url: props.route.params.url,
+                        url: params.url,
                         contador: 4,
                         pokemon1: pokemon1,
                         pokemon2: pokemon2,
@@ -397,10 +232,10 @@ const index = props => {
                       });
                     } else if (pokemon5 === undefined) {
                       props.navigation.navigate('Pokemons', {
-                        key: props.route.params.key,
-                        update: props.route.params.update,
+                        key: params.key,
+                        update: params.update,
                         team: value,
-                        url: props.route.params.url,
+                        url: params.url,
                         contador: 5,
                         pokemon1: pokemon1,
                         pokemon2: pokemon2,
@@ -410,10 +245,10 @@ const index = props => {
                       });
                     } else if (pokemon6 === undefined) {
                       props.navigation.navigate('Pokemons', {
-                        key: props.route.params.key,
-                        update: props.route.params.update,
+                        key: params.key,
+                        update: params.update,
                         team: value,
-                        url: props.route.params.url,
+                        url: params.url,
                         contador: 6,
                         pokemon1: pokemon1,
                         pokemon2: pokemon2,
@@ -427,7 +262,7 @@ const index = props => {
                 />
               </View>
             )}
-            {props.route.params.update === false && pokemon3 && (
+            {params.update === false && pokemon3 && (
               <Button
                 icon={<Icon name="save" color="#ffffff" />}
                 buttonStyle={styles.buttons}
@@ -435,13 +270,13 @@ const index = props => {
                 onPress={sendData}
               />
             )}
-            {props.route.params.update === true && (
+            {params.update === true && (
               <Button
                 icon={<Icon name="update" color="#ffffff" />}
                 buttonStyle={styles.buttons}
                 title={Constants.TEAM.UPDATET}
                 onPress={() => {
-                  updateTeam(props.route.params.key);
+                  updateTeam(params.key);
                 }}
               />
             )}
@@ -452,47 +287,4 @@ const index = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    paddingHorizontal: 2,
-    paddingVertical: 5,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-    height: 40,
-    marginBottom: 20,
-  },
-  container: {
-    marginTop: 28,
-    marginHorizontal: 15,
-    backgroundColor: 'white',
-  },
-  direction: {
-    flexDirection: 'row',
-  },
-  pokemon_images: {
-    width: Dimensions.get('window').width / 2,
-    height: Dimensions.get('window').width / 3,
-    resizeMode: 'contain',
-  },
-  data: {
-    fontSize: 16,
-    textTransform: 'capitalize',
-    marginTop: '3%',
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  buttons: {
-    backgroundColor: Colors.primaryColor,
-    color: Colors.accentColor,
-    marginTop: 10,
-    borderRadius: 10,
-    marginBottom: 10,
-  },
-  buttons_edit: {
-    backgroundColor: Colors.primaryColor,
-    color: Colors.accentColor,
-    marginTop: 10,
-    borderRadius: 10,
-  },
-});
 export default index;

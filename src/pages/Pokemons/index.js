@@ -5,6 +5,7 @@ import RegionCard from '@components/c_regions/regionCard';
 import styles from '@pages/Regions/styles/Regions';
 
 const index = (props) => {
+  const {params} = props.route;
   const [poke, setPoke] = useState();
   
   useEffect(() => {
@@ -13,7 +14,7 @@ const index = (props) => {
 
   const getPokemons = async () => {
     try {
-      const pokemons = await fetch(props.route.params.url, {
+      const pokemons = await fetch(params.url, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -39,18 +40,18 @@ const index = (props) => {
               text={item.item.pokemon_species.name}
               onPress={() => {
                 props.navigation.navigate('PokemonDetail', {
-                  key: props.route.params.key,
-                  update: props.route.params.update,
-                  url: props.route.params.url,
-                  team: props.route.params.team,
+                  key: params.key,
+                  update: params.update,
+                  url: params.url,
+                  team: params.team,
                   name: item.item.pokemon_species.name,
-                  contador: props.route.params.contador,
-                  pokemon1: props.route.params.pokemon1,
-                  pokemon2: props.route.params.pokemon2,
-                  pokemon3: props.route.params.pokemon3,
-                  pokemon4: props.route.params.pokemon4,
-                  pokemon5: props.route.params.pokemon5,
-                  pokemon6: props.route.params.pokemon6,
+                  contador: params.contador,
+                  pokemon1: params.pokemon1,
+                  pokemon2: params.pokemon2,
+                  pokemon3: params.pokemon3,
+                  pokemon4: params.pokemon4,
+                  pokemon5: params.pokemon5,
+                  pokemon6: params.pokemon6,
                 });
               }}
             />

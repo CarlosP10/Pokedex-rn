@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
-import colors from '@common/colors';
+import {Colors} from '@common';
 import {resize} from '@utils/resize';
 
 export default StyleSheet.create({

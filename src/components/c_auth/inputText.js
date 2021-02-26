@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
 
 import { Input } from 'react-native-elements'
 import {PrimaryText} from '@common'
@@ -11,7 +11,7 @@ const inputText = ({text}) => {
             <View style={styles.mainContainer}>
                 <PrimaryText style={styles.textStyle}>{text}: </PrimaryText>
                 <View style={styles.inputView}>
-                    <Input placeholder={text} />
+                    <TextInput style={styles.inputStyle} placeholder={text} placeholderTextColor='grey'/>
                 </View>
             </View>
         </View>

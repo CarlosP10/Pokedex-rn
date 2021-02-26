@@ -1,11 +1,14 @@
 import {Button, Card, Icon} from 'react-native-elements';
 import React, {useEffect, useState} from 'react';
 
+import ButtonLarge from '@components/buttonLarge';
 import {Colors} from '@common';
 import {SafeAreaView} from 'react-native';
 import pokemon from '@models/pokemon';
+import styles from './styles/PokemonDetail'
 
 const index = (props) => {
+  const {params} = props.route;
   const [name, setName] = useState('');
   const [imagePokemon, setImagePokemon] = useState();
   const [weight, setWeight] = useState();
@@ -18,7 +21,7 @@ const index = (props) => {
 
   useEffect(() => {
     getDataPokemon();
-    setListaIntegrantes(props.route.params.integrantes);
+    setListaIntegrantes(params.integrantes);
   }, []);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const index = (props) => {
   const getDataPokemon = async () => {
     try {
       const pokemons = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${props.route.params.name}`,
+        `https://pokeapi.co/api/v2/pokemon/${params.name}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -50,7 +53,7 @@ const index = (props) => {
       setHeight(resData.height);
       setType(resData.types[0].type.name);
       setId(resData.id);
-      setName(props.route.params.name);
+      setName(params.name);
     } catch (e) {
       setImagePokemon(
         'https://maestroselectronics.com/wp-content/uploads/bfi_thumb/blank-user-355ba8nijgtrgca9vdzuv4.jpg',
@@ -60,128 +63,116 @@ const index = (props) => {
       setHeight('No data');
       setType('No data');
       setId('No data');
-      setName(props.route.params.name);
+      setName(params.name);
       console.log(e);
     }
   };
 
   return (
     <SafeAreaView>
-      <Card>
+      <Card containerStyle={styles.cardStyle} >
         <Card.Title
-          style={{
-            textTransform: 'capitalize',
-            fontSize: 20,
-            fontFamily: 'ComicNeue-Regular',
-          }}>
+          style={styles.cardTitle}>
           {name}
         </Card.Title>
-        <Card.Divider />
+        <Card.Divider style={{backgroundColor: Colors.POKEMONBLUE,}} />
         <Card.Image
           source={{uri: imagePokemon}}
           style={{
             resizeMode: 'contain',
           }}
         />
-        <Button
-          icon={<Icon name="add" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-            backgroundColor: Colors.primaryColor,
-            color: Colors.accentColor,
-          }}
-          title="  Add Pokemon"
+        <ButtonLarge 
+        iconName="add"
+        title=" Agregar Pokemon"
           onPress={() => {
-            const aux = props.route.params.contador;
+            const aux = params.contador;
             if (aux === 1) {
               props.navigation.replace('NewTeam', {
-                key: props.route.params.key,
-                update: props.route.params.update,
-                url: props.route.params.url,
-                team: props.route.params.team,
+                key: params.key,
+                update: params.update,
+                url: params.url,
+                team: params.team,
                 pokemon1: listaIntegrantes,
-                pokemon2: props.route.params.pokemon2,
-                pokemon3: props.route.params.pokemon3,
-                pokemon4: props.route.params.pokemon4,
-                pokemon5: props.route.params.pokemon5,
-                pokemon6: props.route.params.pokemon6,
+                pokemon2: params.pokemon2,
+                pokemon3: params.pokemon3,
+                pokemon4: params.pokemon4,
+                pokemon5: params.pokemon5,
+                pokemon6: params.pokemon6,
                 contador: aux + 1,
               });
             }
             if (aux === 2) {
               props.navigation.replace('NewTeam', {
-                key: props.route.params.key,
-                update: props.route.params.update,
-                url: props.route.params.url,
-                team: props.route.params.team,
-                pokemon1: props.route.params.pokemon1,
+                key: params.key,
+                update: params.update,
+                url: params.url,
+                team: params.team,
+                pokemon1: params.pokemon1,
                 pokemon2: listaIntegrantes,
-                pokemon3: props.route.params.pokemon3,
-                pokemon4: props.route.params.pokemon4,
-                pokemon5: props.route.params.pokemon5,
-                pokemon6: props.route.params.pokemon6,
+                pokemon3: params.pokemon3,
+                pokemon4: params.pokemon4,
+                pokemon5: params.pokemon5,
+                pokemon6: params.pokemon6,
                 contador: aux + 1,
               });
             }
             if (aux === 3) {
               props.navigation.replace('NewTeam', {
-                key: props.route.params.key,
-                update: props.route.params.update,
-                url: props.route.params.url,
-                team: props.route.params.team,
-                pokemon1: props.route.params.pokemon1,
-                pokemon2: props.route.params.pokemon2,
+                key: params.key,
+                update: params.update,
+                url: params.url,
+                team: params.team,
+                pokemon1: params.pokemon1,
+                pokemon2: params.pokemon2,
                 pokemon3: listaIntegrantes,
-                pokemon4: props.route.params.pokemon4,
-                pokemon5: props.route.params.pokemon5,
-                pokemon6: props.route.params.pokemon6,
+                pokemon4: params.pokemon4,
+                pokemon5: params.pokemon5,
+                pokemon6: params.pokemon6,
                 contador: aux + 1,
               });
             }
             if (aux === 4) {
               props.navigation.replace('NewTeam', {
-                key: props.route.params.key,
-                update: props.route.params.update,
-                url: props.route.params.url,
-                team: props.route.params.team,
-                pokemon1: props.route.params.pokemon1,
-                pokemon2: props.route.params.pokemon2,
-                pokemon3: props.route.params.pokemon3,
+                key: params.key,
+                update: params.update,
+                url: params.url,
+                team: params.team,
+                pokemon1: params.pokemon1,
+                pokemon2: params.pokemon2,
+                pokemon3: params.pokemon3,
                 pokemon4: listaIntegrantes,
-                pokemon5: props.route.params.pokemon5,
-                pokemon6: props.route.params.pokemon6,
+                pokemon5: params.pokemon5,
+                pokemon6: params.pokemon6,
                 contador: aux + 1,
               });
             }
             if (aux === 5) {
               props.navigation.replace('NewTeam', {
-                key: props.route.params.key,
-                update: props.route.params.update,
-                url: props.route.params.url,
-                team: props.route.params.team,
-                pokemon1: props.route.params.pokemon1,
-                pokemon2: props.route.params.pokemon2,
-                pokemon3: props.route.params.pokemon3,
-                pokemon4: props.route.params.pokemon4,
+                key: params.key,
+                update: params.update,
+                url: params.url,
+                team: params.team,
+                pokemon1: params.pokemon1,
+                pokemon2: params.pokemon2,
+                pokemon3: params.pokemon3,
+                pokemon4: params.pokemon4,
                 pokemon5: listaIntegrantes,
-                pokemon6: props.route.params.pokemon6,
+                pokemon6: params.pokemon6,
                 contador: aux + 1,
               });
             }
             if (aux === 6) {
               props.navigation.replace('NewTeam', {
-                key: props.route.params.key,
-                update: props.route.params.update,
-                url: props.route.params.url,
-                team: props.route.params.team,
-                pokemon1: props.route.params.pokemon1,
-                pokemon2: props.route.params.pokemon2,
-                pokemon3: props.route.params.pokemon3,
-                pokemon4: props.route.params.pokemon4,
-                pokemon5: props.route.params.pokemon5,
+                key: params.key,
+                update: params.update,
+                url: params.url,
+                team: params.team,
+                pokemon1: params.pokemon1,
+                pokemon2: params.pokemon2,
+                pokemon3: params.pokemon3,
+                pokemon4: params.pokemon4,
+                pokemon5: params.pokemon5,
                 pokemon6: listaIntegrantes,
                 contador: aux + 1,
               });

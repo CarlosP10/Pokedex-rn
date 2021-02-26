@@ -6,9 +6,9 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import styles from '../styles/c_pokemons/pokemonCard';
 
-const pokemonCard = ({name, id, type, weight, height, imagen,onPress}) => {
+const pokemonCard = ({name, id, type, weight, height, imagen, onPress}) => {
   return (
-    <TouchableOpacity style={styles.mainView} onPress={onPress}>
+    <View style={styles.mainView}>
       <View style={styles.imageContainer}>
         <Image source={{uri: imagen}} style={styles.pokemon_images} />
       </View>
@@ -19,7 +19,8 @@ const pokemonCard = ({name, id, type, weight, height, imagen,onPress}) => {
             {Constants.POKEMON.NUMBER} {id}{' '}
           </PrimaryText>
           <PrimaryText style={styles.textStyle}>
-            {Constants.POKEMON.TYPE} {type}
+            {Constants.POKEMON.TYPE}
+            <PrimaryText style={styles.textStyleType}>{type}</PrimaryText>{' '}
           </PrimaryText>
           <PrimaryText style={styles.textStyle}>
             {Constants.POKEMON.DESCRIPCION} {Constants.POKEMON.WEIGHT}
@@ -29,7 +30,7 @@ const pokemonCard = ({name, id, type, weight, height, imagen,onPress}) => {
           </PrimaryText>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
-import colors from '@common/colors';
+import {Colors} from '@common';
 import {resize} from '@utils/resize';
 
 var {width} = Dimensions.get('window');
@@ -12,12 +12,14 @@ export default StyleSheet.create({
     marginHorizontal: resize(10),
     // marginHorizontal: resize(15),
     flexDirection: 'row',
+    marginVertical:resize(20),
+    marginTop:0
   },
 
   imageContainer: {
     width: resize(150),
     height: resize(200),
-    borderWidth: resize(0.5),
+    // borderWidth: resize(0.5),
     borderRadius: resize(20),
     marginHorizontal: resize(10),
     alignItems: 'center',
@@ -31,6 +33,7 @@ export default StyleSheet.create({
     borderWidth: resize(0.5),
     borderRadius: resize(20),
     marginHorizontal: resize(10),
+    borderColor: Colors.POKEMONBLUE,
     // flexDirection:'row',
     alignItems: 'center',
     paddingHorizontal: resize(20),
@@ -44,9 +47,16 @@ export default StyleSheet.create({
   pokemonNameStyle: {
     marginTop: resize(10),
     textAlign: 'center',
+    textTransform:'uppercase'
   },
   textStyle: {
     marginVertical: resize(4),
+    
+    textAlign: 'left',
+  },
+  textStyleType: {
+    marginVertical: resize(4),
+    textTransform:'uppercase',
     textAlign: 'left',
   },
   pokemon_images: {

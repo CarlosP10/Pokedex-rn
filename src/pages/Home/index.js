@@ -14,10 +14,10 @@ const Home = () => {
     <View flex={1}>
       <View flex={1}>
         <Tab.Navigator
-          activeColor={Colors.accentColor}
-          inactiveColor={Colors.accentColor}
+          activeColor={Colors.POKEMONLIGHTYELLOW}
+          inactiveColor={Colors.POKEMONPASTELYELLOW}
           labeled={false}
-          barStyle={{backgroundColor: Colors.primaryColor}}>
+          barStyle={{backgroundColor: Colors.POKEMONDARKBLUE}}>
           <Tab.Screen
             lazy={true}
             name="Regions"

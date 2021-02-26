@@ -1,17 +1,11 @@
 import {Button, Icon} from 'react-native-elements';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
+import ButtonLarge from '@components/buttonLarge';
 import {Colors} from '@common';
 import MyTeam from '@components/c_teams/MyTeam';
+import styles from './styles/Teams';
 import team from '@models/team';
 import {useSelector} from 'react-redux';
 
@@ -27,6 +21,22 @@ const index = (props) => {
     setTimeout(() => {
       getTeams();
     }, 15000);
+  };
+
+  const propsNavigate = (props, index, item, child) => {
+    props.navigation.navigate('NewTeam', {
+      flag: false,
+      key: item.item.id,
+      update: true,
+      team: item.item.team,
+      url: item.item.region,
+      contador: index,
+      pokemon1: item.item.pokemon1,
+      pokemon2: item.item.pokemon2,
+      pokemon3: item.item.pokemon3,
+      pokemon4: item.item.pokemon4,
+      child,
+    });
   };
 
   const deleteTeam = async (key) => {
@@ -78,158 +88,39 @@ const index = (props) => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <Text
-        style={{
-          alignSelf: 'center',
-          fontSize: 17,
-          marginTop: 10,
-          fontFamily: 'ComicNeue-Bold',
-        }}>
-        MY TEAMS
-      </Text>
+      <Text style={styles.mainTitle}>MY TEAMS</Text>
       <FlatList
-        style={{
-          flex: 1,
-          marginVertical: 10,
-          backgroundColor: 'white',
-          marginHorizontal: 10,
-        }}
+        style={styles.flatListStyle}
         data={lista}
         keyExtractor={(item) => item.id}
         renderItem={(item, i) => (
-          <View
-            style={{
-              flex: 1,
-              borderRadius: 10,
-              backgroundColor: '#F58712',
-              marginBottom: 10,
-            }}>
-            <Text style={{alignSelf: 'center', ...styles.data}}>
+          <View style={styles.viewFlat}>
+            <Text style={[styles.teamTitle, {...styles.data}]}>
               {item.item.team}
             </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                flexWrap: 'wrap',
-              }}>
-              {item.item.pokemon1 && (
-                <MyTeam
-                  imagen={item.item.pokemon1.image}
-                  name={item.item.pokemon1.name}
-                  id={item.item.pokemon1.id}
-                  type={item.item.pokemon1.type}
-                  height={item.item.pokemon1.height}
-                  weight={item.item.pokemon1.weight}
-                />
-              )}
-              {item.item.pokemon2 && (
-                <MyTeam
-                  imagen={item.item.pokemon2.image}
-                  name={item.item.pokemon2.name}
-                  id={item.item.pokemon2.id}
-                  type={item.item.pokemon2.type}
-                  height={item.item.pokemon2.height}
-                  weight={item.item.pokemon2.weight}
-                />
-              )}
-              {item.item.pokemon3 && (
-                <MyTeam
-                  imagen={item.item.pokemon3.image}
-                  name={item.item.pokemon3.name}
-                  id={item.item.pokemon3.id}
-                  type={item.item.pokemon3.type}
-                  height={item.item.pokemon3.height}
-                  weight={item.item.pokemon3.weight}
-                />
-              )}
-              {item.item.pokemon4 && (
-                <MyTeam
-                  imagen={item.item.pokemon4.image}
-                  name={item.item.pokemon4.name}
-                  id={item.item.pokemon4.id}
-                  type={item.item.pokemon4.type}
-                  height={item.item.pokemon4.height}
-                  weight={item.item.pokemon4.weight}
-                />
-              )}
-              {item.item.pokemon5 && (
-                <MyTeam
-                  imagen={item.item.pokemon5.image}
-                  name={item.item.pokemon5.name}
-                  id={item.item.pokemon5.id}
-                  type={item.item.pokemon5.type}
-                  height={item.item.pokemon5.height}
-                  weight={item.item.pokemon5.weight}
-                />
-              )}
-              {item.item.pokemon6 && (
-                <MyTeam
-                  imagen={item.item.pokemon6.image}
-                  name={item.item.pokemon6.name}
-                  id={item.item.pokemon6.id}
-                  type={item.item.pokemon6.type}
-                  height={item.item.pokemon6.height}
-                  weight={item.item.pokemon6.weight}
-                />
-              )}
-              
+            <View style={styles.viewWrap}>
+              {item.item.pokemon1 && <MyTeam pokeName={item.item.pokemon1} />}
+              {item.item.pokemon2 && <MyTeam pokeName={item.item.pokemon2} />}
+              {item.item.pokemon3 && <MyTeam pokeName={item.item.pokemon3} />}
+              {item.item.pokemon4 && <MyTeam pokeName={item.item.pokemon4} />}
+              {item.item.pokemon5 && <MyTeam pokeName={item.item.pokemon5} />}
+              {item.item.pokemon6 && <MyTeam pokeName={item.item.pokemon6} />}
             </View>
-            <Button
-              icon={<Icon name="update" color="#ffffff" />}
-              buttonStyle={styles.buttons}
+            <ButtonLarge
+              iconName="update"
               title="  Update Team"
               onPress={() => {
                 if (item.item.pokemon4 === undefined) {
-                  props.navigation.navigate('NewTeam', {
-                    flag: false,
-                    key: item.item.id,
-                    update: true,
-                    team: item.item.team,
-                    url: item.item.region,
-                    contador: 4,
-                    pokemon1: item.item.pokemon1,
-                    pokemon2: item.item.pokemon2,
-                    pokemon3: item.item.pokemon3,
-                  });
+                  propsNavigate(props, 4, item);
                 } else if (item.item.pokemon5 === undefined) {
-                  props.navigation.navigate('NewTeam', {
-                    flag: false,
-                    key: item.item.id,
-                    update: true,
-                    team: item.item.team,
-                    url: item.item.region,
-                    contador: 5,
-                    pokemon1: item.item.pokemon1,
-                    pokemon2: item.item.pokemon2,
-                    pokemon3: item.item.pokemon3,
-                    pokemon4: item.item.pokemon4,
-                  });
+                  propsNavigate(props, 5, item, {pokemon4: item.item.pokemon4});
                 } else if (item.item.pokemon6 === undefined) {
-                  props.navigation.navigate('NewTeam', {
-                    flag: false,
-                    key: item.item.id,
-                    update: true,
-                    team: item.item.team,
-                    url: item.item.region,
-                    contador: 6,
-                    pokemon1: item.item.pokemon1,
-                    pokemon2: item.item.pokemon2,
-                    pokemon3: item.item.pokemon3,
+                  propsNavigate(props, 6, item, {
                     pokemon4: item.item.pokemon4,
                     pokemon5: item.item.pokemon5,
                   });
                 } else if (item.item.pokemon6) {
-                  props.navigation.navigate('NewTeam', {
-                    flag: false,
-                    key: item.item.id,
-                    update: true,
-                    team: item.item.team,
-                    url: item.item.region,
-                    contador: 7,
-                    pokemon1: item.item.pokemon1,
-                    pokemon2: item.item.pokemon2,
-                    pokemon3: item.item.pokemon3,
+                  propsNavigate(props, 7, item, {
                     pokemon4: item.item.pokemon4,
                     pokemon5: item.item.pokemon5,
                     pokemon6: item.item.pokemon6,
@@ -237,9 +128,8 @@ const index = (props) => {
                 }
               }}
             />
-            <Button
-              icon={<Icon name="delete" color="#ffffff" />}
-              buttonStyle={styles.buttons}
+            <ButtonLarge
+              iconName="delete"
               title="  Delete Team"
               onPress={() => {
                 console.log(item.item.id);
@@ -252,48 +142,5 @@ const index = (props) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    paddingHorizontal: 2,
-    paddingVertical: 5,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-    height: 40,
-    marginBottom: 20,
-  },
-  container: {
-    marginTop: 8,
-    marginHorizontal: 15,
-    backgroundColor: 'white',
-  },
-  direction: {
-    flexDirection: 'row',
-  },
-  pokemon_images: {
-    width: Dimensions.get('window').width / 4,
-    height: Dimensions.get('window').width / 5,
-    resizeMode: 'contain',
-  },
-  data: {
-    fontSize: 16,
-    textTransform: 'capitalize',
-    marginTop: '3%',
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  buttons: {
-    backgroundColor: Colors.primaryColor,
-    color: Colors.accentColor,
-    marginTop: 10,
-    borderRadius: 10,
-  },
-  buttons_edit: {
-    backgroundColor: Colors.primaryColor,
-    color: Colors.accentColor,
-    marginTop: 10,
-    borderRadius: 10,
-  },
-});
 
 export default index;
